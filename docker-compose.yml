@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  ocserv:
+    restart: always
+    image: ocserv:ocserv
+    container_name: ocserv
+    privileged: true
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - "./volumes/ocserv:/etc/ocserv"
+    ports:
+      - ${PORT:-20443}:443/tcp
+      - ${PORT:-20443}:443/udp
+    environment:
+      - CN=
+      - ORG=
+      - EXPIRE=
+      - OC_NET=
+      - SAME_CLIENT=
